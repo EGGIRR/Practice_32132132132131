@@ -1,0 +1,20 @@
+{% extends "basic.html" %}
+
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div style="margin-left: 80px;">
+    <h4 class="p-3 mb-4 border">Авторизация</h4>
+    {% if request.user.is_authenticated %}
+    <p>Вы уже выполнили вход. <a href="{% url 'logout' %}">Выйти.</a></p>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form layout='horizontal' %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% buttons submit='Войти' %} {% endbuttons %}
+    </form>
+</div>
+{% endif %}
+{% endblock %}
