@@ -1,0 +1,21 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<h4 class="mr-lg-5">Здравствуйте, {{ user.username }}</h4>
+<div class="h5 mr-lg-4 p-3 mb-2 border text-center">Заявки</div>
+{% for elem in all %}
+        <div class="row p-3  border-bottom border-top">
+            <img class="col-4" src="{{ elem.photo.url }}" alt="Фото заявки">
+            <p class="p-3 mb-2"><b>Наименование:</b> {{ elem.name }} <br> <b>Категория:</b> {{ elem.Category }} <br> <b>Дата
+                добавления:</b> {{ elem.date }}</p>
+            <a class="btn ml-auto mt-auto h-100 p-1" href="/readyapl/{{ elem.id }}">
+            <button type="button" id="buttone" class="btn btn-outline-danger mt-auto  ml-auto h-25">
+                Выполнено
+            </button>
+        </a>
+
+        </div>
+    {% endfor %}
+{% endblock %}

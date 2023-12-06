@@ -25,6 +25,14 @@
                         <a href="{% url 'createapl' %}" style="list-style-type:none; text-decoration: none; color: black;position: absolute;top: 18px;left: 300px;" class="nav-link">Создать заявку</a>
                     </li>
                 {% endif %}
+                {% if request.user.is_superuser %}
+                    <li class="nav-item">
+                        <a href="{% url 'aplication_admin_render' %}" style="list-style-type:none; text-decoration: none; color: black;position: absolute;top: 18px;left: 500px;" class="nav-link">Принятие заявок</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'aplication_admin_done' %}" style="list-style-type:none; text-decoration: none; color: black;position: absolute;top: 18px;left: 700px;" class="nav-link">Выпольнить заявки</a>
+                    </li>
+                {% endif %}
             </ul>
             {% if request.user.is_authenticated %}
                 <ul class="navbar-nav" style="list-style-type: none">

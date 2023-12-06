@@ -10,7 +10,8 @@ from project.forms import RegisterUserForm, CreateAplForm
 def index(request):
     counter = Aplication.objects.filter(status='new').all().count()
     done = Aplication.objects.filter(status='done').order_by('-date')[:4]
-    return render(request, 'main/index.html', {'done': done, 'counter': counter})
+    all = Aplication.objects.filter(status='new').all()
+    return render(request, 'main/index.html', {'done': done, 'counter': counter, 'all': all})
 
 
 class BBLoginView(LoginView):
@@ -38,6 +39,23 @@ def createapl(request):
 
 
 @login_required
+def changeapl(request, id):
+    apl = Aplication.objects.filter(id=id).get()
+    if apl:
+        apl.status = "received"
+        apl.save()
+    return redirect('aplication_admin_render')
+
+@login_required
+def readyapl(request, id):
+    apl = Aplication.objects.filter(id=id).get()
+    if apl:
+        apl.status = "done"
+        apl.save()
+    return redirect('aplication_admin_done')
+
+
+@login_required
 def profile(request):
     return render(request, 'main/profile.html')
 
@@ -54,6 +72,18 @@ def delete(request, id):
 def aplication_render(request):
     apl_items = request.user.aplication_set.all().order_by('-date')
     return render(request, 'main/profile.html', context={'apl_items': apl_items})
+
+
+@login_required
+def aplication_admin_render(request):
+    all = Aplication.objects.filter(status='new').all()
+    return render(request, 'main/adapl.html', context={'all': all})
+
+
+@login_required
+def aplication_admin_done(request):
+    all = Aplication.objects.filter(status='received').all()
+    return render(request, 'main/done_apl.html', context={'all': all})
 
 
 def apl_filter(request, status):
