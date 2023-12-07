@@ -1,6 +1,6 @@
 from django.urls import path
 from project import views
-from .views import index, BBLoginView, profile,aplication_admin_render,aplication_admin_done, RegisterView, createapl, aplication_render,delete, \
+from .views import index, BBLoginView,aplication_admin_render,aplication_admin_done, RegisterView, createapl, aplication_render, \
     apl_filter
 from django.contrib.auth import views as authViews
 

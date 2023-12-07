@@ -2,9 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
-from .models import Aplication, Category
-from project.forms import RegisterUserForm, CreateAplForm
+from django.views.generic import CreateView
+from .models import Aplication
+from .forms import RegisterUserForm, CreateAplForm
 
 
 def index(request):

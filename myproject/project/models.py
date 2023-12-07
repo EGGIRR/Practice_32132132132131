@@ -3,7 +3,6 @@ from django.core.validators import FileExtensionValidator
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.crypto import get_random_string
-from PIL import Image
 
 
 class User(AbstractUser):

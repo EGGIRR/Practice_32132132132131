@@ -1,6 +1,6 @@
 from django.contrib import admin
-from project.forms import AplicationForm
-from project.models import *
+from .forms import AplicationForm
+from .models import *
 
 
 class AplicationAdmin(admin.ModelAdmin):
